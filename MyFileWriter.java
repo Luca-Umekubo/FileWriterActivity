@@ -5,7 +5,6 @@ import java.nio.charset.StandardCharsets;
 
 public class MyFileWriter {
     public static void main(String[] args) {
-        System.out.println ("Hello World");
         String data = "Hello, World!";
         String fileName1 = "example.txt";
         String fileName2 = "example2.txt";
@@ -44,6 +43,20 @@ public class MyFileWriter {
         // 5. Using Files (java.nio.file)
         try {
             Files.write(Paths.get(fileName5), data.getBytes(StandardCharsets.UTF_8));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        //hidden File Method
+        try (BufferedWriter hiddenWriter = new BufferedWriter(new FileWriter(".verySecret.txt"))){
+            hiddenWriter.write("superSecretEpicPassword");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+         //hidden Folder Method
+         try (BufferedWriter hiddenWriter = new BufferedWriter(new FileWriter(".sneakyFolder/topSecret.dat"))){
+            hiddenWriter.write("valuable data right here ");
         } catch (IOException e) {
             e.printStackTrace();
         }
